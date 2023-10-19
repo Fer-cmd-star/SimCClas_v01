@@ -54,6 +54,8 @@ def open_loop():
         entry_FT_dem = tk.Entry(open_loop_window)
         entry_FT_dem.insert(1, "[Denominador]")
         entry_FT_dem.grid(row=5, column=2, padx=1, pady=0)
+        label_text=tk.Label(open_loop_window, text="*Ingresar datos como vector")
+        label_text.grid(row=6, column=2, padx=5, pady=5)
         def simular():
             t=[]
             y=[]
