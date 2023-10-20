@@ -18,11 +18,23 @@ from Libraries.SySModel.CloseLoop_MSC_v_1 import CP_MSC_step
 from Libraries.ControlSyS.OpenLoop_v_1 import OL_P,OL_PI,OL_PD,OL_PID
 from Libraries.ControlSyS.CloseLoop_v_1 import CL_P,CL_PI,CL_PD,CL_PID
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from tkinter import filedialog
 def open_loop():
     def no_control():
+        def save_plot():
+            global fig
+            file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+            if file_path:
+                fig.savefig(file_path)
+                canvas_widget.get_tk_widget().update()
         open_loop_window = tk.Toplevel()
         open_loop_window.title("Lazo abierto sin control")
         open_loop_window.geometry("600x420")  
+        menubar = tk.Menu(open_loop_window)
+        open_loop_window.config(menu=menubar)
+        file_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Archivo", menu=file_menu)
+        file_menu.add_command(label="Exportar imagen", command=save_plot)
         label_Ti=tk.Label(open_loop_window, text="Tiempo inicial (Ti):")
         fig, ax = plt.subplots(figsize=(8,4))
         ax.plot(0, 0)
@@ -57,6 +69,7 @@ def open_loop():
         label_text=tk.Label(open_loop_window, text="*Ingresar datos como vector")
         label_text.grid(row=6, column=2, padx=5, pady=5)
         def simular():
+            global fig
             t=[]
             y=[]
             def convert_string_to_list(s):
@@ -81,9 +94,18 @@ def open_loop():
         boton_graficar=tk.Button(open_loop_window, text="Graficar", command=simular)
         boton_graficar.grid(row=4, column=5, padx=5, pady=5)
     def yes_control():
+        def save_plot():
+            file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+            if file_path:
+                fig.savefig(file_path)
         open_loop_window = tk.Toplevel()
         open_loop_window.title("Lazo abierto con control")
         open_loop_window.geometry("640x420")
+        menubar = tk.Menu(open_loop_window)
+        open_loop_window.config(menu=menubar)
+        file_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Archivo", menu=file_menu)
+        file_menu.add_command(label="Exportar imagen", command=save_plot)
         label_Ti=tk.Label(open_loop_window, text="Tiempo inicial (Ti):")
         fig, ax = plt.subplots(figsize=(7,4))
         ax.plot(0, 0)
@@ -196,9 +218,18 @@ def open_loop():
 
 def close_loop():
     def yes_control():
+        def save_plot():
+            file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+            if file_path:
+                fig.savefig(file_path)
         close_loop_window = tk.Toplevel()
         close_loop_window.title("Lazo cerrado con control")
-        close_loop_window.geometry("780x420")  
+        close_loop_window.geometry("780x420")
+        menubar = tk.Menu(close_loop_window)
+        close_loop_window.config(menu=menubar)
+        file_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Archivo", menu=file_menu)
+        file_menu.add_command(label="Exportar imagen", command=save_plot)
         label_Ti=tk.Label(close_loop_window, text="Tiempo inicial (Ti):")
         fig, ax = plt.subplots(figsize=(9,4))
         ax.plot(0, 0)
@@ -318,9 +349,18 @@ def close_loop():
         boton_graficar=tk.Button(close_loop_window, text="Graficar", command=simular)
         boton_graficar.grid(row=5, column=2, padx=5, pady=5)
     def no_control():
+        def save_plot():
+            file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+            if file_path:
+                fig.savefig(file_path)
         close_loop_window = tk.Toplevel()
         close_loop_window.title("Lazo cerrado sin control")
         close_loop_window.geometry("600x420")  
+        menubar = tk.Menu(close_loop_window)
+        close_loop_window.config(menu=menubar)
+        file_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Archivo", menu=file_menu)
+        file_menu.add_command(label="Exportar imagen", command=save_plot)
         label_Ti=tk.Label(close_loop_window, text="Tiempo inicial (Ti):")
         fig, ax = plt.subplots(figsize=(8,4))
         ax.plot(0, 0)
