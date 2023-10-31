@@ -114,13 +114,13 @@ def open_loop():
             label_FT = tk.Label(open_loop_window_1, text="PLANTA")
             label_FT.grid(row=3, column=2, padx=1, pady=1)
             entry_FT_num = tk.Entry(open_loop_window_1)
-            entry_FT_num.insert(0, "[Numerador]")
+            entry_FT_num.insert(0, "Numerador")
             entry_FT_num.grid(row=4, column=2, padx=1, pady=0)
             entry_FT_dem = tk.Entry(open_loop_window_1)
-            entry_FT_dem.insert(1, "[Denominador]")
+            entry_FT_dem.insert(1, "Denominador")
             entry_FT_dem.grid(row=5, column=2, padx=1, pady=0)
             label_text=tk.Label(open_loop_window_1, text="*Ingresar datos como vector. Ejemplo: 1,1,1")
-            label_text.grid(row=6, column=1, padx=5, pady=5)
+            label_text.place(x=270,y=100)
             def simular():
                 global fig
                 t=[]
@@ -208,13 +208,13 @@ def open_loop():
             label_FT = tk.Label(open_loop_window_2, text="PLANTA")
             label_FT.grid(row=2, column=2, padx=1, pady=1)
             entry_FT_num = tk.Entry(open_loop_window_2)
-            entry_FT_num.insert(0, "[Numerador]")
+            entry_FT_num.insert(0, "Numerador")
             entry_FT_num.grid(row=3, column=2, padx=1, pady=0)
             entry_FT_dem = tk.Entry(open_loop_window_2)
-            entry_FT_dem.insert(1, "[Denominador]")
+            entry_FT_dem.insert(1, "Denominador")
             entry_FT_dem.grid(row=4, column=2, padx=1, pady=0)
             label_text_1=tk.Label(open_loop_window_2, text="*Ingresar datos como vector. Ejemplo: 1,1,1")
-            label_text_1.grid(row=5, column=1, padx=5, pady=5)
+            label_text_1.grid(row=5, column=2, padx=5, pady=5)
             label_text_2=tk.Label(open_loop_window_2, text="*Inicializar en 0 si no se utiliza")
             label_text_2.grid(row=5, column=4, padx=5, pady=5)
             selected_curves=[]
@@ -268,7 +268,7 @@ def open_loop():
                 fig.tight_layout()
                 canvas.draw()
             boton_graficar=tk.Button(open_loop_window_2, text="Graficar", command=simular)
-            boton_graficar.grid(row=5, column=2, padx=5, pady=5)
+            boton_graficar.grid(row=5, column=1, padx=5, pady=5)
             open_loop_yes_control=True
             open_loop_window_2.protocol("WM_DELETE_WINDOW",closing_close_loop_4)
     global open_loop_window
@@ -378,26 +378,28 @@ def close_loop():
             label_FT = tk.Label(close_loop_window_1, text="PLANTA")
             label_FT.grid(row=2, column=2, padx=1, pady=1)
             entry_FT_num = tk.Entry(close_loop_window_1)
-            entry_FT_num.insert(0, "[Numerador]")
+            entry_FT_num.insert(0, "Numerador")
             entry_FT_num.grid(row=3, column=2, padx=1, pady=0)
             entry_FT_dem = tk.Entry(close_loop_window_1)
-            entry_FT_dem.insert(1, "[Denominador]")
+            entry_FT_dem.insert(1, "Denominador")
             entry_FT_dem.grid(row=4, column=2, padx=1, pady=0)
             #G
             label_G = tk.Label(close_loop_window_1, text="RETROALIMENTACION")
             label_G.grid(row=2, column=3, padx=1, pady=1)
             entry_G_num = tk.Entry(close_loop_window_1)
-            entry_G_num.insert(0, "[Numerador]")
+            entry_G_num.insert(0, "Numerador")
             entry_G_num.grid(row=3, column=3, padx=1, pady=0)
             entry_G_dem = tk.Entry(close_loop_window_1)
-            entry_G_dem.insert(1, "[Denominador]")
+            entry_G_dem.insert(1, "Denominador")
             entry_G_dem.grid(row=4, column=3, padx=1, pady=0)
-            label_feedback_gain=tk.Label(close_loop_window_1, text="Feedback Gain")
-            label_feedback_gain.grid(row=5, column=0, padx=5, pady=5)
-            entry_feedback_gain=tk.Entry(close_loop_window_1)
-            entry_feedback_gain.grid(row=5, column=1, padx=5, pady=5)
-            label_text=tk.Label(close_loop_window_1, text="*Ingresar datos como vector")
-            label_text.grid(row=5, column=3, padx=5, pady=5)
+            #label_feedback_gain=tk.Label(close_loop_window_1, text="Feedback Gain")
+            #label_feedback_gain.grid(row=5, column=0, padx=5, pady=5)
+            #entry_feedback_gain=tk.Entry(close_loop_window_1)
+            #entry_feedback_gain.grid(row=5, column=1, padx=5, pady=5)
+            label_text=tk.Label(close_loop_window_1, text="*Ingresar datos como vector. Ejemplo 1,1,1")
+            label_text.place(x=270,y=100)
+            label_text_2=tk.Label(close_loop_window_1, text="*Inicializar en 0 si no se utiliza")
+            label_text_2.place(x=570,y=100)
             selected_curves=[]
             a=6
             curves_labels=['P', 'PI', 'PD', 'PID']       
@@ -419,15 +421,15 @@ def close_loop():
                 kp = float(entry_kp.get()) if entry_kp.get() else None
                 ki = float(entry_ki.get()) if entry_ki.get() else None
                 kd = float(entry_kd.get()) if entry_kd.get() else None
-                feedback_gain = float(entry_feedback_gain.get()) if entry_feedback_gain.get() else None
+                #feedback_gain = float(entry_feedback_gain.get()) if entry_feedback_gain.get() else None
                 G_num = convert_string_to_list(entry_G_num.get()) if entry_G_num.get() else None
                 G_dem = convert_string_to_list(entry_G_dem.get()) if entry_G_dem.get() else None
                 FT_num = convert_string_to_list(entry_FT_num.get()) if entry_FT_num.get() else None
                 FT_dem = convert_string_to_list(entry_FT_dem.get()) if entry_FT_dem.get() else None 
-                t,p=CL_P(kp,FT_num,FT_dem,G_num,G_dem,feedback_gain,Ti,To,step)
-                t,pi=CL_PI(kp,ki,FT_num,FT_dem,G_num,G_dem,feedback_gain,Ti,To,step)
-                t,pd=CL_PD(kp,kd,FT_num,FT_dem,G_num,G_dem,feedback_gain,Ti,To,step)
-                t,pid=CL_PID(kp,ki,kd,FT_num,FT_dem,G_num,G_dem,feedback_gain,Ti,To,step)
+                t,p=CL_P(kp,FT_num,FT_dem,G_num,G_dem,1,Ti,To,step)
+                t,pi=CL_PI(kp,ki,FT_num,FT_dem,G_num,G_dem,1,Ti,To,step)
+                t,pd=CL_PD(kp,kd,FT_num,FT_dem,G_num,G_dem,1,Ti,To,step)
+                t,pid=CL_PID(kp,ki,kd,FT_num,FT_dem,G_num,G_dem,1,Ti,To,step)
                 ax.clear()
                 for var in selected_curves:
                     curve=var.get()
@@ -453,7 +455,7 @@ def close_loop():
                 fig.tight_layout()
                 canvas.draw()
             boton_graficar=tk.Button(close_loop_window_1, text="Graficar", command=simular)
-            boton_graficar.grid(row=5, column=2, padx=5, pady=5)
+            boton_graficar.place(x=150,y=90)
             close_loop_yes_control=True
             close_loop_window_1.protocol("WM_DELETE_WINDOW",closing_close_loop_5)
     def no_control():
@@ -499,26 +501,26 @@ def close_loop():
             label_FT = tk.Label(close_loop_window_2, text="PLANTA")
             label_FT.grid(row=3, column=2, padx=1, pady=1)
             entry_FT_num = tk.Entry(close_loop_window_2)
-            entry_FT_num.insert(0, "[Numerador]")
+            entry_FT_num.insert(0, "Numerador")
             entry_FT_num.grid(row=4, column=2, padx=1, pady=0)
             entry_FT_dem = tk.Entry(close_loop_window_2)
-            entry_FT_dem.insert(1, "[Denominador]")
+            entry_FT_dem.insert(1, "Denominador")
             entry_FT_dem.grid(row=5, column=2, padx=1, pady=0)
             #G
             label_G = tk.Label(close_loop_window_2, text="RETROALIMENTACION")
             label_G.grid(row=3, column=3, padx=1, pady=1)
             entry_G_num = tk.Entry(close_loop_window_2)
-            entry_G_num.insert(0, "[Numerador]")
+            entry_G_num.insert(0, "Numerador")
             entry_G_num.grid(row=4, column=3, padx=1, pady=0)
             entry_G_dem = tk.Entry(close_loop_window_2)
-            entry_G_dem.insert(1, "[Denominador]")
+            entry_G_dem.insert(1, "Denominador")
             entry_G_dem.grid(row=5, column=3, padx=1, pady=0)
-            label_feedback_gain=tk.Label(close_loop_window_2, text="Feedback Gain")
-            label_feedback_gain.grid(row=6, column=0, padx=5, pady=5)
-            entry_feedback_gain=tk.Entry(close_loop_window_2)
-            entry_feedback_gain.grid(row=6, column=1, padx=5, pady=5)
-            label_text=tk.Label(close_loop_window_2, text="*Ingresar datos como vector")
-            label_text.grid(row=6, column=3, padx=5, pady=5)
+            #label_feedback_gain=tk.Label(close_loop_window_2, text="Feedback Gain")
+            #label_feedback_gain.grid(row=6, column=0, padx=5, pady=5)
+            #entry_feedback_gain=tk.Entry(close_loop_window_2)
+            #entry_feedback_gain.grid(row=6, column=1, padx=5, pady=5)
+            label_text=tk.Label(close_loop_window_2, text="*Ingresar datos como vector. Ejemplo 1,1,1")
+            label_text.place(x=270,y=100)
             def simular():
                 t=[]
                 y=[]
@@ -530,12 +532,12 @@ def close_loop():
                 Ti = float(entry_Ti.get()) if entry_Ti.get() else None
                 To = float(entry_To.get()) if entry_To.get() else None
                 step = float(entry_step.get()) if entry_step.get() else None
-                feedback_gain = float(entry_feedback_gain.get()) if entry_feedback_gain.get() else None
+                #feedback_gain = float(entry_feedback_gain.get()) if entry_feedback_gain.get() else None
                 G_num = convert_string_to_list(entry_G_num.get()) if entry_G_num.get() else None
                 G_dem = convert_string_to_list(entry_G_dem.get()) if entry_G_dem.get() else None
                 FT_num = convert_string_to_list(entry_FT_num.get()) if entry_FT_num.get() else None
                 FT_dem = convert_string_to_list(entry_FT_dem.get()) if entry_FT_dem.get() else None 
-                t,y=CP_MSC_step(FT_num,FT_dem,G_num,G_dem,feedback_gain,Ti,To,step)
+                t,y=CP_MSC_step(FT_num,FT_dem,G_num,G_dem,1,Ti,To,step)
                 #Grafica
                 fig, ax = plt.subplots(figsize=(8,4))
                 ax.plot(t, y)
@@ -545,7 +547,7 @@ def close_loop():
                 canvas_widget = canvas.get_tk_widget()
                 canvas_widget.place(x=10,y=125)
             boton_graficar=tk.Button(close_loop_window_2, text="Graficar", command=simular)
-            boton_graficar.grid(row=6, column=2, padx=5, pady=5)
+            boton_graficar.place(x=150,y=90)
             close_loop_no_control=True
             close_loop_window_2.protocol("WM_DELETE_WINDOW",closing_close_loop_6)
     global close_loop_window
