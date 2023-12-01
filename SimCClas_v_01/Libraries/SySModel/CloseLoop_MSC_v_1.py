@@ -12,7 +12,7 @@ import control
 import numpy as np
 
 '''
-Modelo sin controlador de Lazo abierto ("Open Loop No controller").
+Modelo sin controlador de Lazo abierto ("Close Loop No controller").
 Librerias de Arranque...
 '''
 def CP_MSC_step(num,den,num_fb,den_fb,feedback_gain,t_start,t_end,t_step):
